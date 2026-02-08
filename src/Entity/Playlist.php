@@ -89,6 +89,7 @@ class Playlist
         return $this;
     }
     
+
     /**
      * @return Collection<int, string>
      */
@@ -97,13 +98,12 @@ class Playlist
         $categories = new ArrayCollection();
         foreach($this->formations as $formation){
             $categoriesFormation = $formation->getCategories();
-            foreach($categoriesFormation as $categorieFormation){
+            foreach($categoriesFormation as $categorieFormation) {
                 if(!$categories->contains($categorieFormation->getName())){
-                $categories[] = $categorieFormation->getName();
+                    $categories->add($categorieFormation->getName());
+                }
             }
         }
         return $categories;
-    }
-        
     }
 }

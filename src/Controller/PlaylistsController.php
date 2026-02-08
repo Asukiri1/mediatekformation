@@ -64,14 +64,17 @@ class PlaylistsController extends AbstractController {
             case "name":
                 $playlists = $this->playlistRepository->findAllOrderByName($ordre);
                 break;
+            case "nbformations":
+                $playlists = $this->playlistRepository->findAllOrderByNbFormations($ordre);
+                break;
             default:
                 break;
         }
         $categories = $this->categorieRepository->findAll();
         return $this->render(self::PAGE_PLAYLISTS, [
             'playlists' => $playlists,
-            'categories' => $categories            
-        ]);
+            'categories' => $categories
+        ]);  
     }          
 
     #[Route('/playlists/recherche/{champ}/{table}', name: 'playlists.findallcontain')]
