@@ -53,6 +53,9 @@
                 <th class="text-center align-top" scope="col">
                     &nbsp;
                 </th>
+                <th class="text-center align-top" scope="col">
+                    actions
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -80,6 +83,10 @@
                                 <img src="{{ formation.miniature }}">
                             </a>
                         {% endif %}
+                    </td>
+                    <td class="text-center">
+                        <button class="btn btn-secondary">Editer</button>
+                        <button class="btn btn-danger">Supprimer</button>
                     </td>
                 </tr>
             {% endfor %}
