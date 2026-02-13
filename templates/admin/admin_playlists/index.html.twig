@@ -1,0 +1,59 @@
+{% extends "basefront.html.twig" %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h2>Gestion des playlists</h2>
+        
+        <a href="{{ path('admin.playlist.ajout') }}" class="btn btn-info mb-3">Ajouter une playlist</a>
+
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success mt-3">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        {% for message in app.flashes('danger') %}
+            <div class="alert alert-danger mt-3">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Playlist</th>
+                    <th>Catégories</th>
+                    <th class="text-center">Formations</th>
+                    <th class="text-center">Actions</th>				
+                </tr>
+            </thead>
+            <tbody>
+                {% for playlist in playlists %}
+                    <tr class="align-middle">
+                        <td>
+                            <h5 class="text-info">{{ playlist.name }}</h5>
+                        </td>                 
+                        <td>
+                            {% for categorie in playlist.categoriesplaylist %}
+                                {{ categorie }} 
+                            {% endfor %}
+                        </td>            					
+                        <td class="text-center">
+                            {{ playlist.formations|length }}
+                        </td> 					
+                        <td class="text-center">
+                            <a href="{{ path('admin.playlist.edit', {id: playlist.id}) }}" class="btn btn-secondary btn-sm">Editer</a>
+                            
+                            <form method="POST" action="{{ path('admin.playlist.suppr', {id: playlist.id}) }}" 
+                                  onsubmit="return confirm('Êtes-vous sûr ?');" 
+                                  style="display: inline-block;">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ playlist.id) }}">
+                                <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                            </form>
+                        </td> 					
+                    </tr>
+                {% endfor %}	
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
