@@ -1,0 +1,56 @@
+{% extends "basefront.html.twig" %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h2>Gestion des catégories</h2>
+        
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+        {% for message in app.flashes('danger') %}
+            <div class="alert alert-danger">{{ message }}</div>
+        {% endfor %}
+
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header bg-info text-white">
+                        Ajouter une catégorie
+                    </div>
+                    <div class="card-body">
+                        {{ form_start(formcategorie) }}
+                            {{ form_row(formcategorie.name) }}
+                            {{ form_row(formcategorie.submit) }}
+                        {{ form_end(formcategorie) }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th class="text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for categorie in categories %}
+                            <tr>
+                                <td>{{ categorie.name }}</td>
+                                <td class="text-center">
+                                    <!-- Formulaire de suppression -->
+                                    <form method="POST" action="{{ path('admin.categorie.suppr', {id: categorie.id}) }}" 
+                                          onsubmit="return confirm('Êtes-vous sûr ?');">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ categorie.id) }}">
+                                        <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
