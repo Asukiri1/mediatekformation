@@ -20,7 +20,7 @@
                     <div class="card-body">
                         {{ form_start(formcategorie) }}
                             {{ form_row(formcategorie.name) }}
-                            {{ form_row(formcategorie.submit) }}
+                            {{ form_row(formcategorie.submit) }}Z
                         {{ form_end(formcategorie) }}
                     </div>
                 </div>
@@ -39,7 +39,6 @@
                             <tr>
                                 <td>{{ categorie.name }}</td>
                                 <td class="text-center">
-                                    <!-- Formulaire de suppression -->
                                     <form method="POST" action="{{ path('admin.categorie.suppr', {id: categorie.id}) }}" 
                                           onsubmit="return confirm('Êtes-vous sûr ?');">
                                         <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ categorie.id) }}">
