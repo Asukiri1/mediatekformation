@@ -28,7 +28,7 @@ class PlaylistRepository extends ServiceEntityRepository {
     /**
      * Retourne toutes les playlists triées sur le nom de la playlist
      * @param type $champ
-     * @param type $ordre
+     * @param string $ordre L'ordre de tri ('ASC' ou 'DESC')
      * @return Playlist[]
      */
     public function findAllOrderByName($ordre): array {

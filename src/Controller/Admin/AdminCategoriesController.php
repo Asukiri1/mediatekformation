@@ -18,6 +18,11 @@ class AdminCategoriesController extends AbstractController
         $this->categorieRepository = $categorieRepository;
     }
     
+    /**
+     * Affiche la liste et gère l'ajout d'une catégorie
+     * @param Request $request
+     * @return Response
+     */
     #[Route('/admin/categories', name: 'admin.categories')]
     public function index(Request $request): Response
     {
@@ -45,6 +50,12 @@ class AdminCategoriesController extends AbstractController
         ]);
     }
 
+    /**
+     * Supprime une catégorie si elle n'est pas utilisée
+     * @param int $id
+     * @param Request $request
+     * @return Response
+     */
     #[Route('/admin/categories/suppr/{id}', name: 'admin.categorie.suppr')]
     public function suppr(int $id, Request $request): Response
     {

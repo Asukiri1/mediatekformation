@@ -21,6 +21,10 @@ class AdminPlaylistsController extends AbstractController
         $this->categorieRepository = $categorieRepository;
     }
     
+    /**
+     * Affiche la liste des playlists (Back-office)
+     * @return Response
+     */
     #[Route('/admin/playlists', name: 'admin.playlists')]
     public function index(): Response
     {
@@ -33,6 +37,12 @@ class AdminPlaylistsController extends AbstractController
         ]);
     }
 
+    /**
+     * Supprime une playlist (uniquement si elle est vide)
+     * @param int $id
+     * @param Request $request
+     * @return Response
+     */
     #[Route('/admin/playlists/suppr/{id}', name: 'admin.playlist.suppr')]
     public function suppr(int $id, Request $request): Response
     {
@@ -51,6 +61,11 @@ class AdminPlaylistsController extends AbstractController
         return $this->redirectToRoute('admin.playlists');
     }
     
+    /**
+     * Ajoute une nouvelle playlist
+     * @param Request $request
+     * @return Response
+     */
     #[Route('/admin/playlists/ajout', name: 'admin.playlist.ajout')]
     public function ajout(Request $request): Response
     {
@@ -68,6 +83,12 @@ class AdminPlaylistsController extends AbstractController
         ]);
     }
     
+    /**
+     * Modifie une playlist existante 
+     * @param int $id
+     * @param Request $request
+     * @return Response
+     */
     #[Route('/admin/playlists/edit/{id}', name: 'admin.playlist.edit')]
     public function edit(int $id, Request $request): Response
     {

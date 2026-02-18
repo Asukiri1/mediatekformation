@@ -91,6 +91,7 @@ class Playlist
     
 
     /**
+     * Récupère la liste des catégories associées à cette playlist (évite les doublons)
      * @return Collection<int, string>
      */
     public function getCategoriesPlaylist() : Collection

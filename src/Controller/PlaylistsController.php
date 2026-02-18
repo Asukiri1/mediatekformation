@@ -57,7 +57,13 @@ class PlaylistsController extends AbstractController {
             'categories' => $categories            
         ]);
     }
-
+    
+    /**
+     * Trie les playlists selon un champ et un ordre
+     * @param type $champ
+     * @param type $ordre
+     * @return Response
+     */
     #[Route('/playlists/tri/{champ}/{ordre}', name: 'playlists.sort')]
     public function sort($champ, $ordre): Response{
         switch($champ){

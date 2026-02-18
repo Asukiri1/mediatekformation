@@ -28,6 +28,10 @@ class AdminFormationsController extends AbstractController
         $this->categorieRepository = $categorieRepository;
     }
     
+    /**
+     * Affiche la liste des formations (Back-office)
+     * @return Response
+     */
     #[Route('/admin/formations', name: 'admin.formations')]
     public function index(): Response
     {
@@ -39,7 +43,12 @@ class AdminFormationsController extends AbstractController
             'categories' => $categories
         ]);
     }
-    
+    /**
+     * Supprime une formation via son ID
+     * @param int $id
+     * @param Request $request
+     * @return Response
+     */
     #[Route('/admin/formations/suppr/{id}', name: 'admin.formation.suppr')]
     public function suppr(int $id, Request $request): Response
     {
@@ -52,7 +61,12 @@ class AdminFormationsController extends AbstractController
 
         return $this->redirectToRoute('admin.formations');
     }
-       
+      
+    /**
+     * Ajoute une nouvelle formation
+     * @param Request $request
+     * @return Response
+     */
     #[Route('/admin/formations/ajout', name: 'admin.formation.ajout')]
     public function ajout(Request $request): Response
     {
@@ -69,7 +83,13 @@ class AdminFormationsController extends AbstractController
             'formformation' => $form->createView()
         ]);
     }
-
+    
+    /**
+     * Modifie une formation existante
+     * @param int $id
+     * @param Request $request
+     * @return Response
+     */
     #[Route('/admin/formations/edit/{id}', name: 'admin.formation.edit')]
     public function edit(int $id, Request $request): Response
     {
