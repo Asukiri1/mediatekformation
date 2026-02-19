@@ -61,8 +61,7 @@ Pour tester cette application sur votre machine :
 ### Prérequis
 - PHP 8.1 ou supérieur
 - Composer
-- Serveur MySQL (Wamp/Xamp/Laragon)
-- Symfony CLI (recommandé)
+- Serveur MySQL (Wamp)
 
 ### Mode opératoire
 1.  **Cloner le dépôt :**
@@ -82,15 +81,11 @@ Pour tester cette application sur votre machine :
 
 4.  **Base de données :**
     - Créer la base : `php bin/console doctrine:database:create`
-    - Importer le fichier `mediatekformation.sql` (fourni à la racine) pour avoir les données initiales.
-    - Mettre à jour la structure (table User) : `php bin/console doctrine:migrations:migrate` (ou `schema:update`)
+    - Importer le fichier `mediatekformation.sql`
+    - Mettre à jour la structure (table User) : `php bin/console doctrine:migrations:migrate`
     - Créer l'administrateur : `php bin/console doctrine:fixtures:load --append`
 
-5.  **Lancer le serveur :**
-    ```bash
-    symfony server:start
-    ```
-    Accédez au site via `http://localhost:8000`.
+5.   Accédez au site via `http://localhost/mediatekformation/public/index.php`.
 
 ---
 
