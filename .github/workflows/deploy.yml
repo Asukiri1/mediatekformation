@@ -1,7 +1,6 @@
 on:
   push:
     branches:
-      - main
       - master 
 
 name:  Deploy Website on Push
